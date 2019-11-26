@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Stein & Gabelgaard ApS
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <data>
+
+        <record model="ir.rule" id="mail_activity_type_company_read_rule">
+            <field name="name">Mail Activity Type multi-company read</field>
+            <field name="model_id" ref="mail.model_mail_activity_type"/>
+            <field name="domain_force">
+                ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+            </field>
+            <field name="perm_read">True</field>
+            <field name="perm_create">False</field>
+            <field name="perm_write">False</field>
+            <field name="perm_unlink">False</field>
+        </record>
+
+		<record model="ir.rule" id="mail_activity_type_company_write_rule">
+            <field name="name">Mail Activity Type multi-company write</field>
+            <field name="model_id" ref="mail.model_mail_activity_type"/>
+            <field name="domain_force">
+                [('company_id','child_of',[user.company_id.id])]
+            </field>
+            <field name="perm_read">False</field>
+            <field name="perm_create">True</field>
+            <field name="perm_write">True</field>
+            <field name="perm_unlink">True</field>
+        </record>
+		
+    </data>
+</odoo>

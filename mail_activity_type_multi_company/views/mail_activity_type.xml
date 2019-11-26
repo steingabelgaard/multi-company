@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Acsone Sa/Nv
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="mail_activity_type_form_view">
+        <field name="name">mail.activity.type.form (in mail_activity_type_multi_company)</field>
+        <field name="model">mail.activity.type</field>
+        <field name="inherit_id" ref="mail.mail_activity_type_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='res_model_id']" position="after">
+                <field name="company_id" options="{'no_open': True, 'no_create': True}" groups="base.group_multi_company"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="mail_activity_type_search_view">
+        <field name="name">mail.activity.type.search (in mail_activity_type_multi_company)</field>
+        <field name="model">mail.activity.type</field>
+        <field name="inherit_id" ref="mail.mail_activity_type_view_search"/>
+        <field name="arch" type="xml">
+             <field name="name" position="after">
+                <field name="company_id" groups="base.group_multi_company"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="mail_activity_type_tree_view">
+        <field name="name">mail.activity.type.tree (in mail_activity_type_multi_company)</field>
+        <field name="model">mail.activity.type</field>
+        <field name="inherit_id" ref="mail.mail_activity_type_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='res_model_id']" position="after">
+                <field name="company_id" groups="base.group_multi_company"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
